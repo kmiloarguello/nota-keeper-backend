@@ -1,0 +1,25 @@
+# Virtual environment directory
+__pycache__/
+.venv/
+env/
+nota/
+post_data/
+
+# Docker files
+Dockerfile
+docker-compose.yml
+
+# IDE and editor specific files
+.idea/
+.vscode/
+
+# Logs and temporary files
+*.log
+.pytest_cache/
+
+# Optional: Database connection info (if using .env file)
+.env
+
+# Optional: Version control system for Python dependencies (if using)
+Pipfile
+Pipfile.lock
