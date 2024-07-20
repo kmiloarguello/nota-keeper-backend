@@ -1,21 +1,32 @@
 version: "3.8"
 
 services:
-  nota_backend:
+  backend:
     build: .
     ports:
       - "8000:8000"
     volumes:
       - ./:/app
-  nota_postgres:
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    networks:
+      - nota_network
+
+  postgres:
     image: postgres:latest
     env_file:
       - .env
     ports:
       - "5432:5432"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./post_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nota_network
 
 volumes:
   postgres_data:
+
+networks:
+  nota_network:

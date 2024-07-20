@@ -1,14 +1,14 @@
 from typing import List
 from models.note import Note
+from sqlalchemy.orm import Session
 from schemas.note_schema import NoteIn, NoteUpdate
 
 class NoteService:
-    def __init__(self, db) -> None:
+    def __init__(self, db: Session) -> None:
         self.db = db
         
     def get_notes(self) -> List[Note]:
-        result = self.db.query(Note).all()
-        return result
+        return self.db.query(Note).all()
     
     def get_note(self, note_id: int) -> Note | None:
         return self.db.query(Note).filter(Note.id == note_id).first()

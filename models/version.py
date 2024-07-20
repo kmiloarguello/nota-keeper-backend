@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-
-class Version:
+from config.db import Base as Database
+class Version(Database):
     __tablename__ = 'versions'
     
     id = Column(Integer, primary_key=True)

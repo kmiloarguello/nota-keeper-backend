@@ -8,14 +8,17 @@ class NoteBase(BaseModel):
     content: str = Field(min_length=1, max_length=500)
 
 class NoteIn(NoteBase):
-    user_id: int
+    user_id: Optional[int] = None
 
 class NoteOut(NoteBase):
     note_id: int
+    user_id: int
     created_at: datetime
     updated_at: Optional[datetime] = None
+    
+    class Config:
+        orm_mode = True
 
 class NoteUpdate(NoteBase):
-    # Optional fields for updating notes
     title: Optional[str] = None
     content: Optional[str] = None
