@@ -21,8 +21,9 @@ class NoteService:
 
     def update_note(self, note_id: int, note_data: NoteUpdate) -> Note:
         note = self.db.query(Note).filter(Note.id == note_id).first()
-        for field, value in note_data.model_dump():
-            setattr(note, field, value)
+        for field, value in note_data.model_dump().items():
+            if value is not None:
+                setattr(note, field, value)
         self.db.commit()
         self.db.refresh(note)
         return note

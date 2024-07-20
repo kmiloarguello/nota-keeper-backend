@@ -11,7 +11,6 @@ class NoteIn(NoteBase):
     user_id: Optional[int] = None
 
 class NoteOut(NoteBase):
-    note_id: int
     user_id: int
     created_at: datetime
     updated_at: Optional[datetime] = None
