@@ -2,6 +2,7 @@ from typing import List
 from models.note import Note
 from sqlalchemy.orm import Session
 from schemas.note_schema import NoteIn, NoteUpdate
+from models.version import Version
 
 class NoteService:
     def __init__(self, db: Session) -> None:
@@ -12,6 +13,9 @@ class NoteService:
     
     def get_note(self, note_id: int) -> Note | None:
         return self.db.query(Note).filter(Note.id == note_id).first()
+    
+    def get_note_by_version(self, version_id: int) -> Note | None:
+        return self.db.query(Note).join(Note.versions).filter(Version.id == version_id).first()
 
     def create_note(self, note_data: NoteIn) -> Note:
         note = Note(**note_data.model_dump())
