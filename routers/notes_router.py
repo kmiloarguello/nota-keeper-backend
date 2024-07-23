@@ -57,7 +57,7 @@ def update_note(note_id: int, note_data: NoteUpdate, db: Session = Depends(get_d
     return NoteService(db).update_note(note_id, note_data)
 
 @router.put("/{note_id}/versions/select/{version_id}", response_model=NoteOut)
-def select_version(note_id: int, version_id: int, content: string, db: Session = Depends(get_db)):
+def select_version(note_id: int, version_id: int, content: str, db: Session = Depends(get_db)):
     if not NoteService(db).get_note(note_id):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Note not found")
     if not VersionService(db).get_version(note_id, version_id):
