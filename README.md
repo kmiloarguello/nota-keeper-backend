@@ -46,6 +46,8 @@ This will set up the entire application stack, including the FastAPI application
 
 Moreover the project documentation can be found in the `http://localhost:8000/docs` endpoint.
 
+> To see the detailed docs, check : https://nota-keeper-backend-qsq8y.ondigitalocean.app/docs
+
 ## Things to Improve
 
 - Add authentication and authorization to secure the application.
