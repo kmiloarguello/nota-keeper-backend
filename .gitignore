@@ -19,6 +19,9 @@ docker-compose.yml
 
 # Optional: Database connection info (if using .env file)
 .env
+.env.local
+.env.dev
+.env.prod
 
 # Optional: Version control system for Python dependencies (if using)
 Pipfile
