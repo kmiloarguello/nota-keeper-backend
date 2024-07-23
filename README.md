@@ -45,3 +45,7 @@ docker compose -f docker-compose.local.yml up --build
 This will set up the entire application stack, including the FastAPI application and the Postgres database, in Docker containers. You can then interact with the API through the specified port.
 
 Moreover the project documentation can be found in the `http://localhost:8000/docs` endpoint.
+
+## Things to Improve
+
+- Add authentication and authorization to secure the application.
