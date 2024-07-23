@@ -27,3 +27,7 @@ class VersionService:
     def delete_versions_by_note(self, note_id: int) -> None:
         self.db.query(Version).filter(Version.note_id == note_id).delete()
         self.db.commit()
+        
+    def delete(self, version_id: int) -> None:
+        self.db.query(Version).filter(Version.id == version_id).delete()
+        self.db.commit()

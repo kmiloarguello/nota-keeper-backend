@@ -56,6 +56,19 @@ def update_note(note_id: int, note_data: NoteUpdate, db: Session = Depends(get_d
     VersionService(db).create_version(note_id, new_version)
     return NoteService(db).update_note(note_id, note_data)
 
+@router.put("/{note_id}/versions/select/{version_id}", response_model=NoteOut)
+def select_version(note_id: int, version_id: int, content: string, db: Session = Depends(get_db)):
+    if not NoteService(db).get_note(note_id):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Note not found")
+    if not VersionService(db).get_version(note_id, version_id):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Version not found")
+    note_data = {
+        "content" : content
+    }
+    new_note_data = NoteUpdate(**note_data)
+    VersionService(db).delete(version_id)
+    return NoteService(db).update_note(note_id, new_note_data)
+
 @router.delete("/{note_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_note(note_id: int, db: Session = Depends(get_db)):
     if not NoteService(db).get_note(note_id):

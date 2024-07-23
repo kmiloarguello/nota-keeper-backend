@@ -18,3 +18,10 @@ def get_note_version(note_id: int, version_id: int, db: Session = Depends(get_db
     if not version:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Version not found")
     return version
+
+@router.delete("/{version_id}", response_model=VersionOut)
+def delete_note_version(note_id: int, version_id: int, db: Session = Depends(get_db)):
+    version = VersionService(db).delete_version(note_id, version_id)
+    if not version:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Version not found")
+    return version
