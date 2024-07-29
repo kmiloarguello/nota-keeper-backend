@@ -42,9 +42,9 @@ docker compose -f docker-compose.local.yml up --build
 
 6. The application should now be running and accessible through `http://localhost:8000`.
 
-Moreover the project documentation can be found in the `http://localhost:8000/docs` endpoint.
+This will set up the entire application stack, including the FastAPI application and the Postgres database, in Docker containers. You can then interact with the API through the specified port.
 
-> To see the detailed docs, check : https://nota-keeper-backend-qsq8y.ondigitalocean.app/docs
+Moreover the project documentation can be found in the `http://localhost:8000/docs` endpoint.
 
 ## Things to Improve
 
